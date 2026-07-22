@@ -1,5 +1,5 @@
 import { NextAuthOptions } from "next-auth";
-import { CredentialsProvider } from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "./db";
 import bcrypt from "bcryptjs";
 import { User } from "@/models/User";
@@ -58,6 +58,7 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             if(user) {
                 token.id = user.id
+                token.loginTime = new Date().toISOString()
             }
 
             return token
@@ -66,6 +67,7 @@ export const authOptions: NextAuthOptions = {
         async session({ session, token }) {
             if(session.user) {
                 session.user.id = token.id as string
+                session.loginTime = token.loginTime as string
             }
 
             return session

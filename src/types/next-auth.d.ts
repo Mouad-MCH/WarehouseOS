@@ -8,11 +8,13 @@ declare module "next-auth" {
       name: string
       email: string
     }
+    loginTime: string
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
     id: string
+    loginTime: string
   }
 }

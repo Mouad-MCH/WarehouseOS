@@ -14,7 +14,7 @@ export const POST = async (request: NextRequest) => {
       return NextResponse.json(
         {
           success: false,
-          message: "Erreur de validation",
+          message: "Validation error",
           errors: result.error.flatten().fieldErrors,
         },
         { status: 400 },
@@ -31,7 +31,7 @@ export const POST = async (request: NextRequest) => {
       return NextResponse.json(
         {
           success: false,
-          message: "Cet email est déjà utilisé",
+          message: "This email is already in use",
         },
         { status: 409 },
       );
@@ -48,7 +48,7 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json(
       {
         success: true,
-        message: "Inscription réussie",
+        message: "Registration successful",
         user: { id: newUser?._id, name: newUser?.name, email: newUser?.email },
       },
       { status: 201 },
@@ -56,7 +56,7 @@ export const POST = async (request: NextRequest) => {
   } catch (error) {
     console.error("Register error:", error);
     return NextResponse.json(
-      { success: false, message: "Erreur serveur" },
+      { success: false, message: "Server error, please try again" },
       { status: 500 },
     );
   }
