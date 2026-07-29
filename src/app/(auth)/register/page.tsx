@@ -1,5 +1,8 @@
 import RegisterForm from "@/components/RegisterForm";
+import { authOptions } from "@/lib/auth";
 import { Warehouse, Zap, ShieldCheck, LayoutGrid, Activity } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 const features = [
   { icon: Zap, label: "Fast Ingestion" },
@@ -8,7 +11,11 @@ const features = [
   { icon: Activity, label: "Reliable Uptime" },
 ];
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  const session = await getServerSession(authOptions);
+
+  if(session) redirect("/dashboard")
+
   return (
     <div className="min-h-screen w-full bg-surface lg:grid lg:grid-cols-2">
       <div

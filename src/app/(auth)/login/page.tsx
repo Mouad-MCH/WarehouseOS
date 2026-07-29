@@ -1,7 +1,14 @@
 import LoginForm from "@/components/LoginForm";
+import { authOptions } from "@/lib/auth";
 import { Warehouse } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+    const session = await getServerSession(authOptions);
+  
+    if(session) redirect("/dashboard")
+
   return (
     <div className="min-h-screen w-full bg-surface lg:grid lg:grid-cols-2">
       <div
