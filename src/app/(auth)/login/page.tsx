@@ -1,4 +1,4 @@
-import LoginForm from "@/components/LoginForm";
+import LoginForm from "@/components/auth/LoginForm";
 import { authOptions } from "@/lib/auth";
 import { Warehouse } from "lucide-react";
 import { getServerSession } from "next-auth";

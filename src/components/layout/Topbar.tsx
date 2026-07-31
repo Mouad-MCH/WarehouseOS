@@ -1,5 +1,5 @@
 import { Search, Bell, Settings } from "lucide-react";
-import LogoutButton from "@/components/LogoutButton";
+import LogoutButton from "@/components/auth/LogoutButton";
 
 interface TopbarProps {
   userName: string;

@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { User, Clock, ShieldCheck, Wrench } from "lucide-react";
 import StatCard from "@/components/StatCard";
-import LoginActivityChart from "@/components/LoginActivityChart";
+import LoginActivityChart from "@/components/auth/LoginActivityChart";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);

@@ -1,5 +1,5 @@
 import { IProduct } from '@/types/Product'
-import { models, model, Schema, Types } from 'mongoose'
+import { models, model, Schema, Types, Model } from 'mongoose'
 
 export interface IProductDocument extends Omit<IProduct, 'category'> {
     category: Types.ObjectId;
@@ -56,4 +56,4 @@ const ProductSchema = new Schema<IProductDocument>({
 }, { timestamps: true, })
 
 
-export const Product = models.Product || model<IProductDocument>('Product', ProductSchema);
+export const Product = (models.Product as Model<IProductDocument>) || model<IProductDocument>('Product', ProductSchema);

@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/RegisterForm";
+import RegisterForm from "@/components/auth/RegisterForm";
 import { authOptions } from "@/lib/auth";
 import { Warehouse, Zap, ShieldCheck, LayoutGrid, Activity } from "lucide-react";
 import { getServerSession } from "next-auth";

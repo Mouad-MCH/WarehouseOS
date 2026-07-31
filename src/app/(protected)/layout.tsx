@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import Sidebar from "@/components/Sidebar";
-import Topbar from "@/components/Topbar";
-import Footer from "@/components/Footer";
+import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
+import Footer from "@/components/layout/Footer";
 
 export default async function ProtectedLayout({
   children,

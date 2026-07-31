@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  Archive,
   Truck,
   BarChart3,
   Settings,
@@ -12,13 +14,19 @@ interface SidebarProps {
   userName: string;
 }
 
+const navItems = [
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Products", href: "/products", icon: Package },
+];
+
 const soonItems = [
-  { label: "Inventory", icon: Archive },
   { label: "Shipments", icon: Truck },
   { label: "Reports", icon: BarChart3 },
 ];
 
 export default function Sidebar({ userName }: SidebarProps) {
+  const pathname = usePathname();
+
   const initials = userName
     .split(" ")
     .map((part) => part[0])
@@ -38,13 +46,24 @@ export default function Sidebar({ userName }: SidebarProps) {
       </div>
 
       <nav className="flex flex-1 flex-col gap-1 px-4">
-        <Link
-          href="/dashboard"
-          className="flex items-center gap-3 rounded-lg bg-secondary/10 px-3 py-2.5 text-sm font-medium font-body text-secondary"
-        >
-          <LayoutDashboard className="h-4 w-4" />
-          Dashboard
-        </Link>
+        {navItems.map(({ label, href, icon: Icon }) => {
+          const isActive = pathname === href || pathname.startsWith(`${href}/`);
+
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium font-body ${
+                isActive
+                  ? "bg-secondary/10 text-secondary"
+                  : "text-primary hover:bg-surface"
+              }`}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </Link>
+          );
+        })}
 
         {soonItems.map(({ label, icon: Icon }) => (
           <div

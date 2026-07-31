@@ -1,5 +1,5 @@
 import { ICategory } from '@/types/Category';
-import { model, models, Schema } from 'mongoose';
+import { model, models, Schema, Model } from 'mongoose';
 
 
 const CategorySchema = new Schema<ICategory>({
@@ -23,4 +23,4 @@ const CategorySchema = new Schema<ICategory>({
 
 }, { timestamps: true })
 
-export const Category = models.Category || model<ICategory>("Category", CategorySchema);
+export const Category = (models.Category as Model<ICategory>) || model<ICategory>("Category", CategorySchema);
